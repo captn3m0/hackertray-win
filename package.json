@@ -1,0 +1,10 @@
+{
+  "name": "HackerTray",
+  "main": "index.html",
+  "window":{
+  	"show": true,
+  	"height":50,
+  	"width":50,
+  	"position":"mouse"
+  }
+}
