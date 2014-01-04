@@ -1,6 +1,5 @@
 var EventEmitter = require( "events" ).EventEmitter;
 var request = require('request');
-
 var hn = new EventEmitter();
 
 var fetchData = function(){
@@ -8,10 +7,10 @@ var fetchData = function(){
 		if(err) throw err;
 		if(!err && res.statusCode==200){
 			var data = JSON.parse(body)
-			hn.emit('refresh', data);
+			hn.emit('refresh', data.slice(0,15));
 		}
 	});
-	setInterval(fetchData, 15*1000);
+	setInterval(fetchData, 5*1000);
 }
 
 fetchData();
