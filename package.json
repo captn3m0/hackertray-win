@@ -1,8 +1,9 @@
 {
   "name": "HackerTray",
-  "main": "index.html",
+  "description":"A port of captn3m0/hackertray to Windows",
+  "version":"0.0.1",
   "window":{
-  	"height":50,
-  	"width":50
-  }
+    "show":false
+  },
+  "main":"index.html"
 }

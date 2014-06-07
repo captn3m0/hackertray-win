@@ -20,21 +20,21 @@ function insertItem(item){
 }
 
 hn.on("refresh", function(data){
-	//node-webkit asks us to reuse UI elements
-	//so we will do that exactly
-	var data=data.reverse();
+	var data = data.reverse();
 	//We already have news items
 	if(menu.items.length>1)
 	{
 		for(i in data){
 			newsItem = data[i];
+			menu.items[i].label = util.labelfromNews(newsItem);
+			menu.items[i].url = newsItem['url'];
 		}
 	}
 	else{
 		for(i in data){
 			var item = data[i];
-			var label = '('+util.pad(item['points'],3)+'/'+util.pad(item['comments_count'],3)+') '+item['title'];
-			var menuItem = new gui.MenuItem({type:'checkbox', label: label, checked:true});
+			var label = util.labelfromNews(item);
+			var menuItem = new gui.MenuItem({type:'checkbox', label: label});
 			menuItem.url = item['url'];
 			menu.insert(menuItem, 0);
 			i++;
@@ -42,4 +42,12 @@ hn.on("refresh", function(data){
 	}
 })
 
+hn.on('error', function(err){
+	console.log("Error occured while calling HN: "+err);
+})
+
 tray.menu = menu;
+
+tray.on('click', function(e){
+	console.log(e);
+});
